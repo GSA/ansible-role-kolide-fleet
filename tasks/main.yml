@@ -1,2 +1,4 @@
 ---
-# tasks file for gsa.kolide-fleet
+- import_tasks: install.yml
+  tags: kolide_install
+  when: kolide_install|bool

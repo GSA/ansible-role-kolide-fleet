@@ -1,2 +1,14 @@
 ---
-# defaults file for gsa.kolide-fleet
+kolide_version: 1.0.5
+kolide_url: https://dl.kolide.co/bin
+kolide_package_name: fleet_{{ kolide_version }}
+kolide_package_file: '{{ kolide_package_name }}.zip'
+kolide_binary_type: linux
+kolide_binary_file_name: 'fleet_{{ kolide_binary_type }}_amd64'
+kolide_final_binary_file_name: fleet
+kolide_download_path: /tmp
+kolide_install: true
+kolide_install_path: /usr/local/bin
+kolide_install_owner: root
+kolide_install_group: root
+kolide_install_mode: '0755'
