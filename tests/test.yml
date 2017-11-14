@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  remote_user: root
+  become: true
+  gather_facts: no
+  roles:
+    # - gsa.kolide-fleet
+      - role: ../../
+        kolide_install: true

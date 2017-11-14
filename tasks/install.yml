@@ -1,0 +1,26 @@
+---
+- name: Download Kolide/fleet release file
+  get_url:
+    url: '{{ kolide_url }}/{{ kolide_package_file }}'
+    dest: '{{ kolide_download_path }}'
+
+- name: Create directory to unarchive binary
+  file: path='{{ kolide_download_path }}/{{ kolide_package_name }}' state=directory
+
+- name: Unarchive Fleet binaries
+  unarchive:
+    src: '{{ kolide_download_path }}/{{ kolide_package_file }}'
+    dest: '{{ kolide_download_path }}/{{ kolide_package_name }}'
+
+- name: Copy unarchived binaries
+  copy:
+    src: '{{ kolide_download_path }}/{{ kolide_package_name }}/{{ kolide_binary_type }}/{{ item }}'
+    dest: '{{ kolide_install_path }}'
+    mode: '{{ kolide_install_mode }}'
+    owner: '{{ kolide_install_owner }}'
+    group: '{{ kolide_install_group }}'
+  with_items:
+  - '{{ kolide_binary_file_name }}'
+
+- name: Rename fleet binary to binary file name
+  command: mv {{ kolide_install_path }}/{{ kolide_binary_file_name }} {{ kolide_install_path }}/{{ kolide_final_binary_file_name }}
