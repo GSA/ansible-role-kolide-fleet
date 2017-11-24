@@ -11,6 +11,7 @@
   unarchive:
     src: '{{ kolide_download_path }}/{{ kolide_package_file }}'
     dest: '{{ kolide_download_path }}/{{ kolide_package_name }}'
+    remote_src: yes
 
 - name: Copy unarchived binaries
   copy:
@@ -19,6 +20,7 @@
     mode: '{{ kolide_install_mode }}'
     owner: '{{ kolide_install_owner }}'
     group: '{{ kolide_install_group }}'
+    remote_src: yes
   with_items:
   - '{{ kolide_binary_file_name }}'
 
